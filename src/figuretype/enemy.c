@@ -384,7 +384,7 @@ void figure_enemy_chariot_action(figure *f)
 {
     figure_image_increase_offset(f, 12);
     f->cart_image_id = 0;
-    f->speed_multiplier = 3;
+    f->speed_multiplier = 1;
     enemy_action(f, formation_get(f->formation_id));
     
     int dir = get_direction(f);
@@ -405,7 +405,7 @@ void figure_enemy49_fast_sword_action(figure *f)
     formation *m = formation_get(f->formation_id);
     figure_image_increase_offset(f, 12);
     f->cart_image_id = 0;
-    f->speed_multiplier = 2;
+    f->speed_multiplier = 1;
     enemy_action(f, m);
     
     int dir = get_direction(f);
@@ -478,7 +478,7 @@ void figure_enemy51_spear_action(figure *f)
     formation *m = formation_get(f->formation_id);
     figure_image_increase_offset(f, 12);
     f->cart_image_id = 0;
-    f->speed_multiplier = 2;
+    f->speed_multiplier = 1;
     enemy_action(f, m);
     
     int dir = get_missile_direction(f, m);
@@ -510,7 +510,7 @@ void figure_enemy52_mounted_archer_action(figure *f)
     formation *m = formation_get(f->formation_id);
     figure_image_increase_offset(f, 12);
     f->cart_image_id = 0;
-    f->speed_multiplier = 3;
+    f->speed_multiplier = 1;
     enemy_action(f, m);
     
     int dir = get_missile_direction(f, m);

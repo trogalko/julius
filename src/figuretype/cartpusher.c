@@ -31,6 +31,7 @@ static void set_destination(figure *f, int action, int building_id, int x_dst, i
     f->wait_ticks = 0;
     f->destination_x = x_dst;
     f->destination_y = y_dst;
+    f->speed_multiplier = 3;
 }
 
 static void determine_cartpusher_destination(figure *f, building *b, int road_network_id)
