@@ -49,7 +49,7 @@ build_script:
   - cmake --build .
 
 after_build:
-  - ctest -C debug
+  #- ctest -C debug
   - if [%COMPILER%] == [msvc] cp debug/julius.exe .
   - if [%COMPILER%] == [msvc] cp C:\sdl-msvc\SDL2-%SDL2_VERSION%\lib\x86\SDL2.dll .
   - if [%COMPILER%] == [msvc] cp C:\sdl-msvc\SDL2_mixer-%SDL2_MIXER_VERSION%\lib\x86\SDL2_mixer.dll .
