@@ -28,7 +28,8 @@ int trade_price_buy(resource_type resource)
 
 int trade_price_sell(resource_type resource)
 {
-    return prices[resource].sell;
+    //return prices[resource].sell;
+    return prices[resource].buy;
 }
 
 int trade_price_change(resource_type resource, int amount)

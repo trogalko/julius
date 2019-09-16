@@ -78,15 +78,16 @@ void city_festival_schedule(void)
         city_data.festival.planned.months_to_go = 3;
         cost = city_data.festival.large_cost;
     } else {
-        city_data.festival.planned.months_to_go = 4;
-        cost = city_data.festival.grand_cost;
+        city_data.festival.planned.months_to_go = 2;
+        //cost = city_data.festival.grand_cost;
+        cost = city_data.festival.small_cost;
     }
 
     city_finance_process_sundry(cost);
 
-    if (city_data.festival.selected.size == FESTIVAL_GRAND) {
-        building_warehouses_remove_resource(RESOURCE_WINE, city_data.festival.grand_wine);
-    }
+    //if (city_data.festival.selected.size == FESTIVAL_GRAND) {
+    //    building_warehouses_remove_resource(RESOURCE_WINE, city_data.festival.grand_wine);
+    //}
 }
 
 static void throw_party(void)
