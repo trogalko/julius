@@ -121,6 +121,7 @@ static void determine_cartpusher_destination_food(figure *f, int road_network_id
 
 static void update_image(figure *f)
 {
+    f->speed_multiplier = 3;
     int dir = figure_image_normalize_direction(
         f->direction < 8 ? f->direction : f->previous_tile_direction);
 
@@ -178,6 +179,7 @@ void figure_cartpusher_action(figure *f)
             f->image_offset = 0;
             break;
         case FIGURE_ACTION_21_CARTPUSHER_DELIVERING_TO_WAREHOUSE:
+            f->speed_multiplier = 3;
             set_cart_graphic(f);
             figure_movement_move_ticks(f, 1);
             if (f->direction == DIR_FIGURE_AT_DESTINATION) {
@@ -192,6 +194,7 @@ void figure_cartpusher_action(figure *f)
             }
             break;
         case FIGURE_ACTION_22_CARTPUSHER_DELIVERING_TO_GRANARY:
+            f->speed_multiplier = 3;
             set_cart_graphic(f);
             figure_movement_move_ticks(f, 1);
             if (f->direction == DIR_FIGURE_AT_DESTINATION) {
@@ -207,6 +210,7 @@ void figure_cartpusher_action(figure *f)
             }
             break;
         case FIGURE_ACTION_23_CARTPUSHER_DELIVERING_TO_WORKSHOP:
+            f->speed_multiplier = 3;
             set_cart_graphic(f);
             figure_movement_move_ticks(f, 1);
             if (f->direction == DIR_FIGURE_AT_DESTINATION) {
@@ -219,6 +223,7 @@ void figure_cartpusher_action(figure *f)
             break;
         case FIGURE_ACTION_24_CARTPUSHER_AT_WAREHOUSE:
             f->wait_ticks++;
+            f->speed_multiplier = 3;
             if (f->wait_ticks > 10) {
                 if (building_warehouse_add_resource(building_get(f->destination_building_id), f->resource_id)) {
                     f->action_state = FIGURE_ACTION_27_CARTPUSHER_RETURNING;
@@ -235,6 +240,7 @@ void figure_cartpusher_action(figure *f)
             break;
         case FIGURE_ACTION_25_CARTPUSHER_AT_GRANARY:
             f->wait_ticks++;
+            f->speed_multiplier = 3;
             if (f->wait_ticks > 5) {
                 if (building_granary_add_resource(building_get(f->destination_building_id), f->resource_id, 1)) {
                     f->action_state = FIGURE_ACTION_27_CARTPUSHER_RETURNING;
@@ -249,6 +255,7 @@ void figure_cartpusher_action(figure *f)
             break;
         case FIGURE_ACTION_26_CARTPUSHER_AT_WORKSHOP:
             f->wait_ticks++;
+            f->speed_multiplier = 3;
             if (f->wait_ticks > 5) {
                 building_workshop_add_raw_material(building_get(f->destination_building_id));
                 f->action_state = FIGURE_ACTION_27_CARTPUSHER_RETURNING;
@@ -260,6 +267,7 @@ void figure_cartpusher_action(figure *f)
             break;
         case FIGURE_ACTION_27_CARTPUSHER_RETURNING:
             f->cart_image_id = image_group(GROUP_FIGURE_CARTPUSHER_CART);
+            f->speed_multiplier = 3;
             figure_movement_move_ticks(f, 1);
             if (f->direction == DIR_FIGURE_AT_DESTINATION) {
                 f->action_state = FIGURE_ACTION_20_CARTPUSHER_INITIAL;
@@ -336,6 +344,7 @@ static void determine_warehouseman_destination(figure *f, int road_network_id)
 {
     map_point dst;
     int dst_building_id;
+    f->speed_multiplier = 3;
     if (!f->resource_id) {
         // getting warehouseman
         dst_building_id = building_warehouse_for_getting(
@@ -411,6 +420,7 @@ void figure_warehouseman_action(figure *f)
     f->terrain_usage = TERRAIN_USAGE_ROADS;
     figure_image_increase_offset(f, 12);
     f->cart_image_id = 0;
+    f->speed_multiplier = 3;
     int road_network_id = map_road_network_get(f->grid_offset);
     
     switch (f->action_state) {
