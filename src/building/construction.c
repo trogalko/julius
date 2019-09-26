@@ -434,7 +434,8 @@ void building_construction_set_type(building_type type)
             case BUILDING_OLIVE_FARM:
             case BUILDING_VINES_FARM:
             case BUILDING_PIG_FARM:
-                data.required_terrain.meadow = 1;
+                //data.required_terrain.meadow = 1;
+                data.required_terrain.meadow = 0;
                 break;
             case BUILDING_MARBLE_QUARRY:
             case BUILDING_IRON_MINE:
